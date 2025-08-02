@@ -8,6 +8,17 @@ import authRoutes from "./routes/auth.routes.js";
 dotenv.config();
 const app = express();
 
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Serve static frontend files
+app.use(express.static(path.join(__dirname, "../frontend")));
+
+
+
 app.use(cors({
   origin: "http://localhost:5500",
   credentials: true

@@ -27,6 +27,9 @@ const registerRoute = async(req,res) => {
             email: newUser.email,
         },
         });
+        console.log("Register Route Hit");
+        console.log("Request Body:", req.body);
+
     } catch (error) {
         res.status(500).json({ message: "Server error", error: error.message });
   }
