@@ -20,7 +20,7 @@ app.use(express.static(path.join(__dirname, "../frontend")));
 
 
 app.use(cors({
-  origin: "http://localhost:5500",
+  origin: "http://localhost:5000",
   credentials: true
 }));
 app.use(express.json());
