@@ -1,10 +1,8 @@
 import express from "express";
 import  {User} from "./../models/user.model.js";
 import jwt from "jsonwebtoken";
+import { generateToken } from "../utils/generateTokens.js";
 
-const generateToken = (userId) => {
-    return jwt.sign(userId,process.env.JWT_SECRET,{ expiresIn: process.env.EXPIRY_TOKEN});
-};
 
 const registerRoute = async(req,res) => {
     try {
@@ -33,6 +31,7 @@ const registerRoute = async(req,res) => {
         res.status(500).json({ message: "Server error", error: error.message });
   }
 };
+
 
 const loginRoute = async(req,res) => {
     try {
@@ -75,4 +74,22 @@ const loginRoute = async(req,res) => {
   }
 };
 
-export {registerRoute,loginRoute};
+
+const logoutRoute = async(req,res) => {
+    try{
+        const options = {
+            httpOnly: true,
+            secure: false,
+            sameSite: "Lax"
+        };
+        res.clearCookie("token",options);
+
+        res.status(200).json({ message: "Logged out successfully" });
+
+    }catch(error){
+
+    }
+};
+
+
+export {registerRoute,loginRoute,logoutRoute};
