@@ -1,3 +1,5 @@
+console.log("Loaded auth.js....");
+
 const loginForm = document.getElementById("loginForm");
 
 loginForm.addEventListener("submit", async (e) => {
